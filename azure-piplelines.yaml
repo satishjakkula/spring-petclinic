@@ -1,0 +1,31 @@
+---
+name: spc-pipeline
+pool: default
+trigger:
+  branches:  
+    include
+      - main
+schedules:
+  - cron: '*/30 * * * *'
+    displayName: 'Build SPC'
+    branches:
+      include
+      - main
+    always: true
+stages:
+  - stage: Build
+    jobs:
+      - job: build_spc
+        displayName: SPC Build
+        continueOnError: false
+        workspace:
+           clean: outputs
+        steps:
+          - task: Maven@3
+          - inputs:
+              mavenPomFile: 'pom.xml'
+              testRunTitle:  SPCBuild
+      - job: build_spc
+        steps:
+          - script: echo Building!
+            
