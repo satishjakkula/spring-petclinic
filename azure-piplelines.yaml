@@ -10,7 +10,7 @@ schedules:
     displayName: 'Build SPC'
     branches:
       include
-      - main
+        - main
     always: true
 stages:
   - stage: Build
@@ -22,7 +22,7 @@ stages:
            clean: outputs
         steps:
           - task: Maven@3
-          - inputs:
+            inputs:
               mavenPomFile: 'pom.xml'
               testRunTitle:  SPCBuild
       - job: build_spc
